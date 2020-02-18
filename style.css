@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#navbar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    background-color: red;
+}
+
+.nav-list {
+    display: flex;
+    list-style-type: none;
+    font-size: 2em;
+    display: block;
+    font-weight: 400;
+
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: white;
+}
+
+#welcome-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: rgb(22, 4, 85);
+}
+
+h1, h3 {
+    color: #fff;
+}
+
+#project-list {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 350px;
+}
+
+#contact {
+    justify-content: space-evenly;
+    padding: 1.5rem;
+
+}
+
+#contact a {
+    text-decoration: none;
+    margin:1.5rem;
+}
+
+i {
+    font-size: 2rem;
+}
+
+footer {
+    display: flex;
+    font-size: 1rem;
+    height: 25px;
+    background-color: blue;
+}
