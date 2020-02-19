@@ -15,18 +15,21 @@
     display: flex;
     list-style-type: none;
     font-size: 2em;
-    display: block;
     font-weight: 400;
 
 }
 
 .nav-list a {
+    display: block;
+    font-size: 2.2rem;
+    padding: 2rem;
     text-decoration: none;
     color: white;
 }
 
 #welcome-section {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -41,18 +44,35 @@ h1, h3 {
 #project-list {
     display: flex;
     justify-content: space-evenly;
-    max-width: 350px;
+
+}
+.project-title {
+    max-width: 265px;
+    text-align: center;
 }
 
 #contact {
-    justify-content: space-evenly;
-    padding: 1.5rem;
-
+display: flex;
+justify-content: space-around;
+height:120px;
+align-items: center;
 }
 
-#contact a {
+#contact-rules{
+    width: 0 auto;
+
+}
+.project-title img {
+    width: 100%;
+}
+}
+a {
     text-decoration: none;
-    margin:1.5rem;
+}
+
+fig img 
+#contact a {
+    margin: 1rem;
 }
 
 i {
@@ -61,7 +81,23 @@ i {
 
 footer {
     display: flex;
-    font-size: 1rem;
-    height: 25px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    height: 60px;
     background-color: blue;
+    color: #fff;
+}
+
+/* 1200px / 16px = 75em */
+@media (max-width: 75em) {
+    html {
+        font-size: 60%;
+    }
+}
+
+/* 980px /16 px = 61.25em */
+@media (max-width: 01.25em) {
+    html { font-size: 50%;
+    }
 }
