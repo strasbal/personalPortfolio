@@ -2,6 +2,15 @@
     box-sizing:border-box;
 }
 
+header, footer {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+}
+
 .nav {
     border: solid 2px black;
     padding-right: 1rem;
