@@ -1,5 +1,5 @@
 import {starships} from '../starships.js'
-import {removeChildren, getLastNumber} from '../utils.js'
+import {removeChildren, getLastNumber, addStarField} from '../utils.js'
 
 const nav = document.querySelector('.nav')
 
@@ -13,6 +13,7 @@ const modalButton = document.querySelector('.modal-close')
 
 const modalBackground = document.querySelector('.modal-background')
 
+const shipView = document.querySelector
 const modalMessage = document.querySelector ('.dialogMessage')
 modalButton.addEventListener('click', () => {
     modalDialog.classList.toggle('is-active')
@@ -58,3 +59,4 @@ function populateShipView (shipData)  {
 
 populateNav(starships)
 
+addStarField(document.body, 500)
