@@ -12,9 +12,7 @@ header, footer {
 }
 
 .shipView {
-    display: flex;
-    justify-content: center;
-    width: 100%;
+
 }
 
 .nav {
