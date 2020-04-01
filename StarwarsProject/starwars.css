@@ -1,0 +1,16 @@
+:root {
+    box-sizing: border-box;
+    background-color: dfdfdf;}
+
+a > img {
+    height: 18rem;
+    margin: 4px;
+}
+
+button {
+    height: 2rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: #b9f45a;
+    font-weight: 600;
+}

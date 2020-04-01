@@ -1,0 +1,46 @@
+:root {
+    box-sizing:border-box;
+}
+
+header, footer {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+}
+
+.nav {
+    border: solid 2px white;
+    padding: 1rem;
+}
+
+main {
+    margin-left: 50px;
+
+}
+a {
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+li:hover {
+    color: white;
+}
+li {
+    list-style-type:  none;
+}
+
+.container {
+    display: flex;
+
+}
+
+.card-content {
+    padding: 0!important;
+}
+
+.dialogMessage {
+    padding-bottom: 50px!important;
+}
