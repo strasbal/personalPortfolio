@@ -1,4 +1,4 @@
-import { senators } from '../data/senators.js'
+import { senators } from '../congress/data/senators.js'
 
 // this is all about filter, map, reduce
 
@@ -15,7 +15,10 @@ function simplifiedSenators(senatorArray) {
             id: senator.id,
             name: `${senator.first_name}${middleName}${senator.last_name}`,
             imgURL: `https://www.govtrack.us/static/legislator-photos/${senator.govtrack_id}-200px.jpeg`,
-            seniority: parseInt(senator.seniority, 10)
+            seniority: parseInt(senator.seniority, 10),
+            votesWithPartyPct: senator.votes_with_party_pct,
+            party: senator.party,
+            missed_votes_pct: senator.missed_votes_pct
         }
     })
 }
@@ -39,12 +42,34 @@ function populateContainer(smallSenatorsArray) {
 const republicans = filterSenators('party', 'R')
 const democrats = filterSenators('party', 'D')
 
-const mostSeniority = simplifiedSenators(republicans).reduce(
+const mostSeniority = simplifiedSenators(democrats).reduce(
     (acc, senator) => {
         return acc.seniority > senator.seniority ? acc : senator
     }
 )
 
+const mostMissedVotes = simplifiedSenators(senators).reduce((acc, senator) => {
+    return acc.missed_votes_pct > senator.missed_votes_pct ? acc : senator
+}
+)
+
+/* const loyalArray = simplifiedSenators(senators).map(senator => {
+    if (senator.votesWithPartyPct === 100) {
+        return senator
+    }
+}) */
+
+let loyalArray = []
+
+ const mostLoyal = simplifiedSenators(senators).reduce((acc, senator) => {
+    if (senator.votesWithPartyPct === 100) {
+        loyalArray.push(senator)
+    }
+    return acc.votesWithPartyPct > senator.votesWithPartyPct ? acc : senator
+})
+
 console.log(mostSeniority)
+console.log(loyalArray)
+console.log(mostMissedVotes)
 
 populateContainer(simplifiedSenators(republicans))
