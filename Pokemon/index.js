@@ -57,6 +57,7 @@ function populateCardFront(pokeMon) {
   cardFront.textContent = `${pokeMon.name} ${pokeMon.id}`
   let frontImage = document.createElement('img')
   frontImage.src = '../images/001.png'
+  /* we need a way to replace to call each image possibly with a for each loop then we can loop through the images*/
   cardFront.appendChild(frontImage)
   return cardFront
 }

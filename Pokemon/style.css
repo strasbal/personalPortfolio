@@ -19,6 +19,7 @@ transition: transform 1s;
 transform-style: preserve-3d;
 cursor: pointer;
 position: relative;
+border-radius: 10px;
 }
 
 .card.is-flipped {
@@ -43,3 +44,4 @@ background: red;
 background: blue;
 transform: rotateY(180deg);
 }
+
