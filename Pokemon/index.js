@@ -1,16 +1,10 @@
 let pokeContainer = document.querySelector('.pokeContainer')
+let startButton = document.querySelector('#startButton')
+let newButton = document.querySelector('#newButton')
 
-/* function getPokeData(url) {
-  fetch(url).then(function (response) {
-    response.json().then(function (pokemon) {
-      console.log(pokemon.results)
-      populatePokeCards(pokemon.results)
-    })
-  })
-}
-getPokeData('https://pokeapi.co/api/v2/pokemon') */
-// https://pokeapi.co/api/v2/pokemon/1/
 
+startButton.addEventListener('click')
+console.log('you clicked')
 async function getAPIData(url) {
   try {
     const response = await fetch(url)
@@ -21,6 +15,9 @@ async function getAPIData(url) {
     console.error(error)
   }
 }
+
+function loadPage () {
+
 
 getAPIData('https://pokeapi.co/api/v2/pokemon/?&limit=25').then(
   (data) => {
@@ -33,6 +30,7 @@ getAPIData('https://pokeapi.co/api/v2/pokemon/?&limit=25').then(
     }
   }
 )
+}
 
 function populatePokeCard(singlePokemon) {
     let pokeScene = document.createElement('div')
@@ -56,10 +54,18 @@ function populateCardFront(pokeMon) {
   cardFront.className = 'card__face card__face--front'
   cardFront.textContent = `${pokeMon.name} ${pokeMon.id}`
   let frontImage = document.createElement('img')
-  frontImage.src = '../images/001.png'
+  frontImage.src = `../images/${getImageFileName}.png`
   /* we need a way to replace to call each image possibly with a for each loop then we can loop through the images*/
   cardFront.appendChild(frontImage)
   return cardFront
+}
+
+function getImageFileName(pokemon() {
+  if (pokemon.id < 10) {
+    return `00${pokemon.id}`
+  } else if (pokemon.id > 9 && pokemon.id < 100)
+  return `0${pokemon.id}`
+}
 }
 
 function populateCardBack(pokeMon) {
@@ -69,16 +75,8 @@ function populateCardBack(pokeMon) {
   return cardBack
 }
 
-{
-  /* <div class="scene">
-  <div class="card">
-    <div class="card__face card__face--front">front</div>
-    <div class="card__face card__face--back"><div><p>Hi,I'm here on the back</p></div></div>
-  </div>
-</div>
-var card = document.querySelector('.card');
-card.addEventListener( 'click', function() {
-  card.classList.toggle('is-flipped');
-});
-*/
+
+
+function addPokemon () {
+
 }
