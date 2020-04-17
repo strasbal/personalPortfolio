@@ -1,10 +1,14 @@
 let pokeContainer = document.querySelector('.pokeContainer')
 let startButton = document.querySelector('#startButton')
+startButton.addEventListener('click', () => {
+  loadPage()
+})
+
 let newButton = document.querySelector('#newButton')
+newButton.addEventListener('click', () => {
+  addPokemon()
+})
 
-
-startButton.addEventListener('click')
-console.log('you clicked')
 async function getAPIData(url) {
   try {
     const response = await fetch(url)
@@ -16,20 +20,18 @@ async function getAPIData(url) {
   }
 }
 
-function loadPage () {
-
-
-getAPIData('https://pokeapi.co/api/v2/pokemon/?&limit=25').then(
-  (data) => {
-    for (const pokemon of data.results) {
-      getAPIData(pokemon.url).then(
-        (pokeData) => {
-          populatePokeCard(pokeData)
-        }
-      )
+function loadPage() {
+  getAPIData('https://pokeapi.co/api/v2/pokemon/?&limit=25').then(
+    (data) => {
+      for (const pokemon of data.results) {
+        getAPIData(pokemon.url).then(
+          (pokeData) => {
+            populatePokeCard(pokeData)
+          }
+        )
+      }
     }
-  }
-)
+  )
 }
 
 function populatePokeCard(singlePokemon) {
@@ -49,34 +51,78 @@ function populatePokeCard(singlePokemon) {
     pokeContainer.appendChild(pokeScene)
 }
 
-function populateCardFront(pokeMon) {
+function populateCardFront(pokemon) {
   let cardFront = document.createElement('div')
   cardFront.className = 'card__face card__face--front'
-  cardFront.textContent = `${pokeMon.name} ${pokeMon.id}`
+  
   let frontImage = document.createElement('img')
-  frontImage.src = `../images/${getImageFileName}.png`
-  /* we need a way to replace to call each image possibly with a for each loop then we can loop through the images*/
+  frontImage.src = `../images/${getImageFileName(pokemon)}.png`
+  let frontLabel = document.createElement('p') 
+  frontLabel.textContent = `${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`
   cardFront.appendChild(frontImage)
+  cardFront.appendChild(frontLabel)
   return cardFront
 }
 
-function getImageFileName(pokemon() {
+function getImageFileName(pokemon) {
   if (pokemon.id < 10) {
     return `00${pokemon.id}`
-  } else if (pokemon.id > 9 && pokemon.id < 100)
-  return `0${pokemon.id}`
-}
+  } else if (pokemon.id > 9 && pokemon.id < 100) {
+    return `0${pokemon.id}`
+  } else return `pokeball`
 }
 
-function populateCardBack(pokeMon) {
+function populateCardBack(pokemon) {
   let cardBack = document.createElement('div')
   cardBack.className = 'card__face card__face--back'
-  cardBack.textContent = pokeMon.stats[0].stat.name
+  let abilityList = document.createElement('ul')
+  abilityList.textContent = 'Abilities:'
+  pokemon.abilities.forEach(ability => {
+    let abilityName = document.createElement('li')
+    abilityName.textContent = ability.ability.name
+    abilityList.appendChild(abilityName)
+  })
+  let moveList = document.createElement('p')
+  moveList.textContent = `Level 0 Moves: ${getPokemonMoves(pokemon, 0).length}`
+  cardBack.appendChild(abilityList)
+  cardBack.appendChild(moveList)
   return cardBack
 }
 
+function getPokemonMoves(pokemon, levelLearnedAt) {
+  //console.log(`Name: ${pokemon.name} Number of Moves: ${pokemon.moves.length}`)
+  return pokemon.moves.filter(move => {
+    return move.version_group_details[0].level_learned_at === levelLearnedAt
+  })
+}
 
+class Pokemon {
+  constructor(height, weight, name, abilities, moves) {
+    this.height = height
+    this.weight = weight
+    this.name = name
+    this.abilities = abilities
+    this.moves = moves
+    this.id = 900
+  }
+}
 
-function addPokemon () {
-
+function addPokemon() {
+  let newPokemon = new Pokemon(50, 25, 'Thoremon', [
+    {
+        ability:
+          { name: 'Thunder Belly' }
+    }], [
+      {
+        move: {
+          name: "Breaking-Wind"
+        },
+        version_group_details: [
+          {
+          level_learned_at: 0
+          }
+        ]
+      }
+    ])
+  populatePokeCard(newPokemon)
 }
