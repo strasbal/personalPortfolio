@@ -131,3 +131,9 @@ function addPokemon() {
     ])
   populatePokeCard(newPokemon)
 }
+
+function chaosMode() {
+  var element = document.getElementsByClassName(".scene");
+  element.classList.toggle("scene");
+  console.log("scene")
+} 
